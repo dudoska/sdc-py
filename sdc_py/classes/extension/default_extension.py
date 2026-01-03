@@ -1,4 +1,5 @@
 import importlib
+import traceback
 
 from ..Bots import Global
 from ..Lib import Querier
@@ -29,6 +30,9 @@ class Monitoring(commands.Cog):
                     data = await res.json()
                 else:
                     raise RuntimeError
+
+                print(data)
+
                 status = data["status"]
                 if status is True:
                     if Global.logging_level:
@@ -39,11 +43,11 @@ class Monitoring(commands.Cog):
             except RuntimeError:
                 print(f"SDC: Произошла ошибка при отправке статистики: API временно недоступно. Повторное подключение через {Global.time}")
             except Exception as err:
-                print(f"SDC: Произошла неизвестная ошибка при отправке статистики: {err}")
+                print(f"SDC: Произошла неизвестная ошибка при отправке статистики: {traceback.format_exc()}")
         else:
             if Global.logging_level:
                 print("SDC: Количество серверов не изменилось. Отправка статистики пропущена")
 
 
-def setup(bot):
-    bot.add_cog(Monitoring(bot))
+async def setup(bot):
+    await bot.add_cog(Monitoring(bot))

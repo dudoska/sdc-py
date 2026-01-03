@@ -1,9 +1,10 @@
-# Ignore pycache garbage
-*__pycache__/
+# Ignore Python cache garbage
+.venv
 .idea
-upload_pypi.bat
-server
 dist
 build
-sdc_api_py.egg-info
+server
+*__pycache__/
 pyproject.toml
+sdc_py.egg-info
+upload_pypi.bat

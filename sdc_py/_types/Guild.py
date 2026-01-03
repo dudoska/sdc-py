@@ -17,7 +17,7 @@ class SdcGuildStatus:
     youtube:    bool = False
     twitch:     bool = False
     spamhunt:   bool = False
-    raw: SdcRawGuildStatus = SdcRawGuildStatus()
+    raw:        SdcRawGuildStatus = field(default_factory=SdcRawGuildStatus)
 
 
 @dataclass
@@ -54,7 +54,7 @@ class SdcGuild:
     description:    str = None
     invite:         str = None
     owner:          str = None
-    status:         SdcGuildStatus = SdcGuildStatus()
+    status:         SdcGuildStatus = field(default_factory=SdcGuildStatus)
 
 
 @dataclass
@@ -69,8 +69,8 @@ class SdcGuildRates:
     SdcGuildRates.plus_count: 15                                 # количество пользователей поставивших "+"
     SdcGuildRates.minus_count: 15                                # количество пользователей поставивших "-"
     """
-    plus:           list = field(default_factory=[])
-    minus:          list = field(default_factory=[])
+    plus:           list = field(default_factory=list)
+    minus:          list = field(default_factory=list)
     plus_count:     int = 0
     minus_count:    int = 0
 
@@ -85,4 +85,3 @@ class SdcGuildPlace:
     SdcGuildPlace.place: 123
     """
     place: int = 0
-
